@@ -120,7 +120,7 @@
 
         $image.data('loaded', false);
         $image.data('src', config.basePath + 'tiles/' + zoom + '/' + c + '_' + r + '.jpg');
-        $image.fadeOut(0);
+        $image.hide();
 
         $tile.append($image);
         $row.append($tile);
