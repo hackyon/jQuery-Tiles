@@ -120,6 +120,7 @@
 
         $image.data('loaded', false);
         $image.data('src', config.basePath + 'tiles/' + zoom + '/' + c + '_' + r + '.jpg');
+        $image.fadeOut(0);
 
         $tile.append($image);
         $row.append($tile);
@@ -175,7 +176,7 @@
           $image.attr('src', $image.data('src'));
           $image.data('loaded', true);
           $image.load(function() {
-            $(this).fadeOut(0).fadeIn(250);
+            $(this).fadeIn(250);
           });
         }
       }
