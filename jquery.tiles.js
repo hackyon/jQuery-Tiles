@@ -1,5 +1,5 @@
 /**
- * jQuery Tiles v0.3.0
+ * jQuery-Tiles v0.3.0
  *
  * Tiles takes care of loading and zooming of tiled images. This jQuery
  * plugin depends on jQuery and jQuery UI (draggable). The tiled images
