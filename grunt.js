@@ -36,6 +36,10 @@ module.exports = function(grunt) {
         }
       }
     },
+    watch: {
+      files: ['src/*.js'],
+      tasks: ['concat', 'min', 'copy']
+    },
     jshint: {
       options: {
         curly: true,

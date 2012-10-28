@@ -72,6 +72,32 @@
     this.$layer.css('display', 'none');
   };
 
+  Layer.prototype.resetContainment = function() {
+    var $viewport = this.$viewport;
+    var $layer = this.$layer;
+    
+    var offset = $viewport.offset();
+    var width  = this.width;
+    var height = this.height;
+
+    var containment = [
+      offset.left + $viewport.width() - width, 
+      offset.top + $viewport.height() - height, 
+      offset.left, 
+      offset.top
+    ];
+    if ($viewport.width() > width) {
+      containment[0] = offset.left + ($viewport.width() - width)/2;
+      containment[2] = offset.left + ($viewport.width() - width)/2;
+    }
+    if ($viewport.height() > height) {
+      containment[1] = offset.top + ($viewport.height() - height)/2;
+      containment[3] = offset.top + ($viewport.height() - height)/2;
+    }
+
+    $layer.draggable('option', 'containment', containment);
+  };
+
   Layer.prototype.load = function() {
     var $viewport = this.$viewport;
     var $layer = this.$layer;
@@ -92,11 +118,13 @@
       var $row = $('<div/>');
       for (var c = 1; c <= cols; c++) {
         var $tile = $('<div/>');
-        $tile.css('width',  tileSize);
-        $tile.css('height', tileSize);
-        $tile.css('float', 'left');
-        $tile.css('text-align', 'left');
-        $tile.css('vertical-align', 'top');
+        $tile.css({
+          'width':  tileSize,
+          'height': tileSize,
+          'float': 'left',
+          'text-align': 'left',
+          'vertical-align': 'top'
+        });
 
         if (config.loading) {
           $tile.css('background', 'url(' + config.loading + ') center center no-repeat');
@@ -131,27 +159,12 @@
 
     $viewport.append($layer);
 
-    var offset = $viewport.offset();
     var layer = this;
-
-    var containment = [
-      offset.left + $viewport.width() - width, 
-      offset.top + $viewport.height() - height, 
-      offset.left, 
-      offset.top
-    ];
-    if ($viewport.width() > width) {
-      containment[0] = offset.left + ($viewport.width() - width)/2;
-      containment[2] = offset.left + ($viewport.width() - width)/2;
-    }
-    if ($viewport.height() > height) {
-      containment[1] = offset.top + ($viewport.height() - height)/2;
-      containment[3] = offset.top + ($viewport.height() - height)/2;
-    }
     $layer.draggable({
-      containment: containment,
       drag: function() { layer._ondrag(); }
     });
+
+    this.resetContainment();
     this._ondrag();
 
     this.hide();
@@ -279,6 +292,26 @@
 
         $this.data('layers', layers);
         $this.data('zoom', zoom);
+
+        // Capture resize and reposition events
+        var recompute = function() {
+          $.each(layers, function(zoom, layer) {
+            if (zoom === 0) {
+              return; // No need to do anything for the DummyLayer
+            }
+            layer.resetContainment(); 
+            layer._ondrag();
+          });
+        };
+
+        // Recomputation is expensive so delay until the final event
+        var timeout = null;
+        $this.bind('resize reposition', function() {
+          if (timeout) {
+            clearTimeout(timeout);
+          }
+          timeout = setTimeout(recompute, 300);
+        });
       });
     },
     zoom: function(factor) {
