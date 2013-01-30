@@ -13,7 +13,7 @@ function usage() {
   echo
   echo "This shell script generates the tiled images for jQuery-Tiles (using the 'convert' command from ImageMagick). The tiled images will be generated under the tiles/ folder located in the same directory as the input image."
   echo
-  echo "Usage: ./generate.sh [-hzb] file"
+  echo "Usage: ./generate.sh [-hzt] file"
   echo
   echo "Options:"
   echo "  -z, --zooms       zoom levels to generate (ex. '1 2 3 4')"
