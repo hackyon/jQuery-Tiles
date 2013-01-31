@@ -27,8 +27,10 @@ The bash script, ```generate.sh``` simplifies the tile generation process. The s
 To run jQuery-Tiles on a page, you need to include the [jQuery](http://jquery.com/) and [jQuery-UI](http://jqueryui.com/) dependencies:
 
 ```html
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+
+<script type="text/javascript" src="scripts/jquery.tiles.min.js"></script>
 ```
 
 Simply select the viewport and initialize with options:
