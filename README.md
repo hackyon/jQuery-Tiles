@@ -15,6 +15,37 @@ This project is in Beta. Suggestions and contributions are encouraged.
 Getting Started
 --------------------------------------
 
+### Generating the Tiled Images
+The bash script, ```generate.sh``` simplifies the tile generation process. The script handles the tiling and directory structure of the generated tiles. 
+
+1. Install [ImageMagick](http://www.imagemagick.org/script/binary-releases.php)
+2. Move the source image, ```source.jpg``` to the same directory of ```generate.sh```
+3. Run ```generate.sh``` with the desired zooms and tile size. For example, to generate 300x300 tiles at zooms 3 and 4, run ```./generate.sh -z '3 4' -t 300 source.jpg```
+4. Tiled images will be generated under the ```tiles/``` directory
+
+### Client-side JavaScript
+To run jQuery-Tiles on a page, you need to include the [jQuery](http://jquery.com/) and [jQuery-UI](http://jqueryui.com/) dependencies:
+
+```html
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+```
+
+Simply select the viewport and initialize with options:
+
+```javascript
+$('.viewport').tiles({
+  original: {
+    width:  3264,                // Required - width of original image
+    height: 2448,                // Required - height of original image
+  },
+  basePath: "images/pier/",      // Required - path containing the tiles/ directory
+  loading: "images/loading.gif", // Optional - placeholder image for loading images
+  zoom: 2                        // Optional - initial zoom level
+});
+```
+
+Check out the source of the [demo](http://tiles.hackyon.com) at ```site/``` (see ```index.html```) for an example.
 
 
 Build
