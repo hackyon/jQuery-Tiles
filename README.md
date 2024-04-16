@@ -72,9 +72,3 @@ The source is freely available under the terms of the MIT License.
 
 Feel free to download, modify, and use for personal or commercial projects. I would appreciate a pingback if you find the project useful, but it's certainly not required. 
 
-
-Credits
---------------------------------------
-
-Created by [Donald Lau](http://www.badassdon.com).
-
