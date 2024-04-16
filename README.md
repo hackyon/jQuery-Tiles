@@ -1,4 +1,4 @@
-[jQuery-Tiles](http://tiles.hackyon.com) - Image Tiling and Zooming
+[jQuery-Tiles](https://hackyon.github.io/jQuery-Tiles/) - Image Tiling and Zooming
 ===================================================================
 
 jQuery-Tiles is an image tiling and zooming library for really big images. It is a much simpler version of the tiling used in many mapping applications (such as Google Maps). As indicative in the name, this is a [jQuery](http://jquery.com) plugin.
@@ -9,7 +9,7 @@ Some features include:
 * Zoom and Drag - Support different levels of zooming for your tiled images, from thumbnail previews to high-resolution originals.
 * Simple tiled image generation with the bash script ```generate.sh```.
 
-This project is in Beta. Suggestions and contributions are encouraged.
+Suggestions and contributions are encouraged.
 
 
 Getting Started
@@ -47,7 +47,7 @@ $('.viewport').tiles({
 });
 ```
 
-Check out the source of the [demo](http://tiles.hackyon.com) at ```site/``` (see ```index.html```) for an example.
+Check out the source of the [demo](https://hackyon.github.io/jQuery-Tiles/) at ```docs/``` (see ```index.html```) for an example.
 
 
 Build
